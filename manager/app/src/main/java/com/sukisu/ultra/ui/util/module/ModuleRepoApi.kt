@@ -1,13 +1,7 @@
 package com.sukisu.ultra.ui.util.module
 
-import com.sukisu.ultra.ksuApp
-import com.sukisu.ultra.ui.util.isNetworkAvailable
-import okhttp3.Request
-import org.json.JSONArray
-import org.json.JSONObject
-
-private const val MODULES_URL =
-    "https://gitee.com/JT22/MakoSU_ModuleDownload/raw/main/modules.json"
+import com.sukisu.ultra.data.model.RepoModule
+import com.sukisu.ultra.data.repository.ModuleCatalog
 
 data class ModuleDetail(
     val readme: String,
@@ -41,59 +35,25 @@ fun sanitizeVersionString(version: String): String {
     return version.replace(Regex("[^a-zA-Z0-9.\\-_]"), "_")
 }
 
-fun stripTicks(s: String): String {
-    val t = s.trim()
-    return if (t.startsWith("`") && t.endsWith("`") && t.length >= 2) {
-        t.substring(1, t.length - 1)
-    } else {
-        t
-    }
-}
+fun stripTicks(s: String): String = ModuleCatalog.stripTicks(s)
 
-private fun fetchCatalogArray(): JSONArray? {
-    if (!isNetworkAvailable(ksuApp)) return null
-    return runCatching {
-        ksuApp.okhttpClient.newCall(Request.Builder().url(MODULES_URL).build()).execute().use { resp ->
-            if (!resp.isSuccessful) null else JSONArray(resp.body.string())
-        }
-    }.getOrNull()
-}
-
-private fun findCatalogModule(moduleId: String): JSONObject? {
-    val array = fetchCatalogArray() ?: return null
-    for (i in 0 until array.length()) {
-        val item = array.optJSONObject(i) ?: continue
-        if (item.optString("moduleId", "") == moduleId) {
-            return item
-        }
-    }
-    return null
-}
-
-private fun parseModuleDetail(item: JSONObject): ModuleDetail {
-    val summary = item.optString("summary", "")
-    val repoUrl = stripTicks(item.optString("repoUrl", ""))
-    val lr = item.optJSONObject("latestRelease")
-    val latestTag = lr?.optString("name", lr.optString("version", ""))
-        ?: item.optString("latestRelease", "")
-    val latestTime = lr?.optString("time", "") ?: ""
-    val downloadUrl = stripTicks(lr?.optString("downloadUrl", "") ?: "")
-    val assetName = downloadUrl.substringAfterLast('/').takeIf { it.isNotEmpty() }
-    val assetSize = lr?.optLong("size", 0L) ?: 0L
-    val assetDownloads = lr?.optInt("downloadCount", 0) ?: 0
+private fun toDetail(module: RepoModule): ModuleDetail {
+    val downloadUrl = module.latestAsset?.downloadUrl.orEmpty()
+    val assetName = module.latestAsset?.name
+        ?: downloadUrl.substringAfterLast('/').takeIf { it.isNotEmpty() }
     val releases = if (downloadUrl.isNotEmpty()) {
         listOf(
             ReleaseInfo(
-                name = latestTag,
-                tagName = latestTag,
-                publishedAt = latestTime,
-                descriptionHTML = summary,
+                name = module.latestRelease,
+                tagName = module.latestRelease,
+                publishedAt = module.latestReleaseTime,
+                descriptionHTML = module.summary,
                 assets = listOf(
                     ReleaseAssetInfo(
-                        name = assetName ?: "${item.optString("moduleId", "module")}.zip",
+                        name = assetName ?: "${module.moduleId}.zip",
                         downloadUrl = downloadUrl,
-                        size = assetSize,
-                        downloadCount = assetDownloads,
+                        size = module.latestAsset?.size ?: 0L,
+                        downloadCount = module.latestAsset?.downloadCount ?: 0,
                     )
                 ),
             )
@@ -103,22 +63,22 @@ private fun parseModuleDetail(item: JSONObject): ModuleDetail {
     }
 
     return ModuleDetail(
-        readme = summary,
-        readmeHtml = summary,
-        latestTag = latestTag,
-        latestTime = latestTime,
+        readme = module.summary,
+        readmeHtml = module.summary,
+        latestTag = module.latestRelease,
+        latestTime = module.latestReleaseTime,
         latestAssetName = assetName,
         latestAssetUrl = downloadUrl.ifEmpty { null },
         releases = releases,
-        homepageUrl = repoUrl,
-        sourceUrl = repoUrl,
-        url = repoUrl,
+        homepageUrl = module.repoUrl,
+        sourceUrl = module.repoUrl,
+        url = module.repoUrl,
     )
 }
 
 fun fetchReleaseDescriptionHtml(moduleId: String, latestTag: String): String? {
-    val item = findCatalogModule(moduleId) ?: return null
-    val detail = parseModuleDetail(item)
+    val module = ModuleCatalog.findModule(moduleId) ?: return null
+    val detail = toDetail(module)
     if (latestTag.isBlank() || detail.latestTag == latestTag || detail.latestTag.isBlank()) {
         return detail.readmeHtml.takeIf { it.isNotBlank() }
     }
@@ -131,6 +91,6 @@ fun fetchReleaseDescriptionHtml(moduleId: String, latestTag: String): String? {
 
 fun fetchModuleDetail(moduleId: String): ModuleDetail? {
     if (moduleId.isBlank()) return null
-    val item = findCatalogModule(moduleId) ?: return null
-    return parseModuleDetail(item)
+    val module = ModuleCatalog.findModule(moduleId) ?: return null
+    return toDetail(module)
 }
