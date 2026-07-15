@@ -1,9 +1,9 @@
 /// <reference lib="webworker" />
 
-const CACHE_NAME: string = 'makosu-v1.1'
-const STATIC_CACHE: string = 'makosu-static-v1.1'
-const RUNTIME_CACHE: string = 'makosu-runtime-v1.1'
-const IMAGE_CACHE: string = 'makosu-images-v1.1'
+const CACHE_NAME: string = 'makosu-v1.2'
+const STATIC_CACHE: string = 'makosu-static-v1.2'
+const RUNTIME_CACHE: string = 'makosu-runtime-v1.2'
+const IMAGE_CACHE: string = 'makosu-images-v1.2'
 
 const CRITICAL_ASSETS: string[] = [
   '/MakoSU/',
@@ -12,6 +12,12 @@ const CRITICAL_ASSETS: string[] = [
   '/MakoSU/guide/compatibility',
   '/MakoSU/guide/susfs',
   '/MakoSU/guide/troubleshooting',
+  '/MakoSU/en/',
+  '/MakoSU/en/guide/',
+  '/MakoSU/en/guide/installation',
+  '/MakoSU/en/guide/compatibility',
+  '/MakoSU/en/guide/susfs',
+  '/MakoSU/en/guide/troubleshooting',
   '/MakoSU/makosu-manager.png',
   '/MakoSU/favicon-96x96.png',
   '/MakoSU/offline.html',

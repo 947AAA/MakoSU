@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { withBase } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
-const isZh = computed(() => true)
+const { site } = useData()
+const isZh = computed(() => !site.value.lang.toLowerCase().startsWith('en'))
+const docsUrl = computed(() => withBase(isZh.value ? '/guide/' : '/en/guide/'))
 
 const githubUrl = 'https://github.com/Spring-bulid/MakoSU'
 
@@ -190,9 +192,7 @@ const kmiRows = [
         <p class="mako-hero-lead">{{ copy.lead }}</p>
         <div class="mako-actions">
           <a class="mako-button mako-button-primary" href="#features">{{ copy.start }} →</a>
-          <a class="mako-button mako-button-secondary" :href="withBase('/guide/')">{{
-            copy.docs
-          }}</a>
+          <a class="mako-button mako-button-secondary" :href="docsUrl">{{ copy.docs }}</a>
           <a class="mako-button mako-button-secondary" :href="githubUrl">{{ copy.source }}</a>
         </div>
         <dl class="mako-facts">

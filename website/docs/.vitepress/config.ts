@@ -15,6 +15,112 @@ export default defineConfig({
   description: 'Reliable kernel-root management for GKI Android devices.',
   base: '/MakoSU/',
   lang: 'zh-Hans',
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh-Hans',
+      themeConfig: {
+        nav: [
+          { text: '首页', link: '/' },
+          { text: '文档', link: '/guide/' },
+          { text: '功能', link: '/#features' },
+          { text: '兼容性', link: '/#compatibility' },
+        ],
+        sidebar: {
+          '/guide/': [
+            {
+              text: 'MakoSU 文档',
+              items: [{ text: '文档首页', link: '/guide/' }],
+            },
+            {
+              text: '安装与兼容',
+              items: [
+                { text: '安装与更新', link: '/guide/installation' },
+                { text: 'KMI 兼容性', link: '/guide/compatibility' },
+              ],
+            },
+            {
+              text: '使用与恢复',
+              items: [
+                { text: 'SuSFS 使用', link: '/guide/susfs' },
+                { text: '故障排查与救砖', link: '/guide/troubleshooting' },
+              ],
+            },
+          ],
+        },
+        outline: { label: '本页目录', level: [2, 3] },
+        docFooter: { prev: '上一篇', next: '下一篇' },
+        lastUpdated: {
+          text: '最后更新',
+          formatOptions: { dateStyle: 'medium', timeStyle: 'short' },
+        },
+        sidebarMenuLabel: '文档导航',
+        returnToTopLabel: '返回顶部',
+        darkModeSwitchLabel: '外观',
+        langMenuLabel: '切换语言',
+        search: {
+          provider: 'local',
+          options: {
+            translations: {
+              button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
+              modal: {
+                noResultsText: '没有找到相关结果',
+                resetButtonTitle: '清除查询',
+                footer: { selectText: '选择', navigateText: '切换', closeText: '关闭' },
+              },
+            },
+          },
+        },
+      },
+    },
+    en: {
+      label: 'English',
+      lang: 'en-US',
+      title: 'MakoSU',
+      description: 'Reliable kernel-root management for GKI Android devices.',
+      themeConfig: {
+        nav: [
+          { text: 'Home', link: '/en/' },
+          { text: 'Docs', link: '/en/guide/' },
+          { text: 'Features', link: '/en/#features' },
+          { text: 'Compatibility', link: '/en/#compatibility' },
+        ],
+        sidebar: {
+          '/en/guide/': [
+            {
+              text: 'MakoSU Docs',
+              items: [{ text: 'Documentation home', link: '/en/guide/' }],
+            },
+            {
+              text: 'Install and compatibility',
+              items: [
+                { text: 'Installation and updates', link: '/en/guide/installation' },
+                { text: 'KMI compatibility', link: '/en/guide/compatibility' },
+              ],
+            },
+            {
+              text: 'Use and recovery',
+              items: [
+                { text: 'Using SuSFS', link: '/en/guide/susfs' },
+                { text: 'Troubleshooting and recovery', link: '/en/guide/troubleshooting' },
+              ],
+            },
+          ],
+        },
+        outline: { label: 'On this page', level: [2, 3] },
+        docFooter: { prev: 'Previous', next: 'Next' },
+        lastUpdated: {
+          text: 'Last updated',
+          formatOptions: { dateStyle: 'medium', timeStyle: 'short' },
+        },
+        sidebarMenuLabel: 'Documentation menu',
+        returnToTopLabel: 'Return to top',
+        darkModeSwitchLabel: 'Appearance',
+        langMenuLabel: 'Change language',
+        search: { provider: 'local' },
+      },
+    },
+  },
 
   lastUpdated: true,
   cleanUrls: true,
@@ -175,75 +281,9 @@ export default defineConfig({
     logo: { src: '/makosu-manager.png', width: 28, height: 28 },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/Spring-bulid/MakoSU' }],
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '文档', link: '/guide/' },
-      { text: '功能', link: '/#features' },
-      { text: '兼容性', link: '/#compatibility' },
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          text: 'MakoSU 文档',
-          items: [{ text: '文档首页', link: '/guide/' }],
-        },
-        {
-          text: '安装与兼容',
-          items: [
-            { text: '安装与更新', link: '/guide/installation' },
-            { text: 'KMI 兼容性', link: '/guide/compatibility' },
-          ],
-        },
-        {
-          text: '使用与恢复',
-          items: [
-            { text: 'SuSFS 使用', link: '/guide/susfs' },
-            { text: '故障排查与救砖', link: '/guide/troubleshooting' },
-          ],
-        },
-      ],
-    },
-    outline: {
-      label: '本页目录',
-      level: [2, 3],
-    },
-    docFooter: {
-      prev: '上一篇',
-      next: '下一篇',
-    },
     editLink: {
       pattern: 'https://github.com/Spring-bulid/MakoSU/edit/main/website/docs/:path',
       text: '在 GitHub 上编辑此页',
-    },
-    lastUpdated: {
-      text: '最后更新',
-      formatOptions: {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      },
-    },
-    sidebarMenuLabel: '文档导航',
-    returnToTopLabel: '返回顶部',
-    darkModeSwitchLabel: '外观',
-    search: {
-      provider: 'local',
-      options: {
-        translations: {
-          button: {
-            buttonText: '搜索文档',
-            buttonAriaLabel: '搜索文档',
-          },
-          modal: {
-            noResultsText: '没有找到相关结果',
-            resetButtonTitle: '清除查询',
-            footer: {
-              selectText: '选择',
-              navigateText: '切换',
-              closeText: '关闭',
-            },
-          },
-        },
-      },
     },
   },
 
