@@ -1,1 +1,26 @@
-cGx1Z2lucyB7DQogICAgYWxpYXMobGlicy5wbHVnaW5zLmFncC5hcHApIGFwcGx5IGZhbHNlDQogICAgYWxpYXMobGlicy5wbHVnaW5zLmtvdGxpbikgYXBwbHkgZmFsc2UNCiAgICBhbGlhcyhsaWJzLnBsdWdpbnMuY29tcG9zZS5jb21waWxlcikgYXBwbHkgZmFsc2UNCn0NCg0KZXh0cmFbImFuZHJvaWRNaW5TZGtWZXJzaW9uIl0gPSAyNg0KZXh0cmFbImFuZHJvaWRUYXJnZXRTZGtWZXJzaW9uIl0gPSAzNw0KZXh0cmFbImFuZHJvaWRDb21waWxlU2RrVmVyc2lvbiJdID0gMzcNCmV4dHJhWyJhbmRyb2lkQ29tcGlsZVNka1ZlcnNpb25NaW5vciJdID0gMA0KZXh0cmFbImFuZHJvaWRCdWlsZFRvb2xzVmVyc2lvbiJdID0gIjM3LjAuMCINCmV4dHJhWyJhbmRyb2lkQ29tcGlsZU5ka1ZlcnNpb24iXSA9IGxpYnMudmVyc2lvbnMubmRrLmdldCgpDQpleHRyYVsiYW5kcm9pZFNvdXJjZUNvbXBhdGliaWxpdHkiXSA9IEphdmFWZXJzaW9uLlZFUlNJT05fMjENCmV4dHJhWyJhbmRyb2lkVGFyZ2V0Q29tcGF0aWJpbGl0eSJdID0gSmF2YVZlcnNpb24uVkVSU0lPTl8yMQ0KLy8gS2VlcCB0aGUgTWFuYWdlciBhbmQgdGhlIHJlbGVhc2VkIEtlcm5lbFNVIExLTSBkcml2ZXIgb24gb25lIHZlcnNpb24gY29udHJhY3QuCmV4dHJhWyJtYW5hZ2VyVmVyc2lvbkNvZGUiXSA9IDQwODQwCmV4dHJhWyJtYW5hZ2VyVmVyc2lvbk5hbWUiXSA9IGdldFZlcnNpb25OYW1lKCkKDQpmdW4gZ2V0R2l0RGVzY3JpYmUoKTogU3RyaW5nIHsNCiAgICB2YWwgcHJvY2VzcyA9IFJ1bnRpbWUuZ2V0UnVudGltZSgpLmV4ZWMoYXJyYXlPZigiZ2l0IiwgImRlc2NyaWJlIiwgIi0tdGFncyIsICItLWFsd2F5cyIsICItLWFiYnJldj0wIikpDQogICAgcmV0dXJuIHByb2Nlc3MuaW5wdXRTdHJlYW0uYnVmZmVyZWRSZWFkZXIoKS51c2UgeyBpdC5yZWFkVGV4dCgpLnRyaW0oKSB9DQp9DQoNCmZ1biBnZXRWZXJzaW9uTmFtZSgpOiBTdHJpbmcgewogICAgcmV0dXJuIGdldEdpdERlc2NyaWJlKCkNCn0K
+plugins {
+    alias(libs.plugins.agp.app) apply false
+    alias(libs.plugins.kotlin) apply false
+    alias(libs.plugins.compose.compiler) apply false
+}
+
+extra["androidMinSdkVersion"] = 26
+extra["androidTargetSdkVersion"] = 37
+extra["androidCompileSdkVersion"] = 37
+extra["androidCompileSdkVersionMinor"] = 0
+extra["androidBuildToolsVersion"] = "37.0.0"
+extra["androidCompileNdkVersion"] = libs.versions.ndk.get()
+extra["androidSourceCompatibility"] = JavaVersion.VERSION_21
+extra["androidTargetCompatibility"] = JavaVersion.VERSION_21
+// Keep the Manager and the released KernelSU LKM driver on one version contract.
+extra["managerVersionCode"] = 40840
+extra["managerVersionName"] = getVersionName()
+
+fun getGitDescribe(): String {
+    val process = Runtime.getRuntime().exec(arrayOf("git", "describe", "--tags", "--always", "--abbrev=0"))
+    return process.inputStream.bufferedReader().use { it.readText().trim() }
+}
+
+fun getVersionName(): String {
+    return getGitDescribe()
+}

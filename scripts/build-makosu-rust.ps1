@@ -1,1 +1,127 @@
-cGFyYW0oCiAgICBbc3RyaW5nXSROZGtSb290ID0gIiRQU1NjcmlwdFJvb3RcLi5cLmFuZHJvaWQtc2RrXG5ka1wyOS4wLjE0MjA2ODY1IiwKICAgIFtzdHJpbmddJExrbURpcmVjdG9yeSA9ICIkUFNTY3JpcHRSb290XC4uXG91dFxsa20iLAogICAgW3N0cmluZ10kTWFuYWdlclBhY2thZ2UgPSAiY29tLm1ha29zdS5tYW5hZ2VyIiwKICAgIFtzdHJpbmdbXV0kRXhwZWN0ZWRLbWlzID0gQCgKICAgICAgICAiYW5kcm9pZDEyLTUuMTAiLAogICAgICAgICJhbmRyb2lkMTMtNS4xMCIsCiAgICAgICAgImFuZHJvaWQxMy01LjE1IiwKICAgICAgICAiYW5kcm9pZDE0LTUuMTUiLAogICAgICAgICJhbmRyb2lkMTQtNi4xIiwKICAgICAgICAiYW5kcm9pZDE1LTYuNiIsCiAgICAgICAgImFuZHJvaWQxNi02LjEyIgogICAgKQopCgokRXJyb3JBY3Rpb25QcmVmZXJlbmNlID0gIlN0b3AiCiRyZXBvUm9vdCA9IChSZXNvbHZlLVBhdGggIiRQU1NjcmlwdFJvb3RcLi4iKS5QYXRoCiRsbHZtUm9vdCA9IEpvaW4tUGF0aCAkTmRrUm9vdCAidG9vbGNoYWluc1xsbHZtXHByZWJ1aWx0XHdpbmRvd3MteDg2XzY0IgokbGx2bUJpbiA9IEpvaW4tUGF0aCAkbGx2bVJvb3QgImJpbiIKJGtzdWluaXQgPSBKb2luLVBhdGggJHJlcG9Sb290ICJ0YXJnZXRcYWFyY2g2NC11bmtub3duLWxpbnV4LW11c2xccmVsZWFzZVxrc3Vpbml0IgokYXNzZXREaXJlY3RvcnkgPSBKb2luLVBhdGggJHJlcG9Sb290ICJ1c2Vyc3BhY2Vca3N1ZFxiaW5cYWFyY2g2NCIKJG91dHB1dERpcmVjdG9yeSA9IEpvaW4tUGF0aCAkcmVwb1Jvb3QgIm91dFxydXN0Igokam5pTGliRGlyZWN0b3J5ID0gSm9pbi1QYXRoICRyZXBvUm9vdCAibWFuYWdlclxhcHBcc3JjXG1haW5cam5pTGlicyIKCmZ1bmN0aW9uIFNldC1UYXJnZXRFbnZpcm9ubWVudCB7CiAgICBwYXJhbSgKICAgICAgICBbc3RyaW5nXSRUYXJnZXQsCiAgICAgICAgW3N0cmluZ10kTmRrVGFyZ2V0LAogICAgICAgIFtzdHJpbmddJEJpbmRnZW5UcmlwbGUKICAgICkKCiAgICAkbG93ZXIgPSAkVGFyZ2V0LlJlcGxhY2UoIi0iLCAiXyIpCiAgICAkdXBwZXIgPSAkbG93ZXIuVG9VcHBlckludmFyaWFudCgpCiAgICAkY2xhbmcgPSBKb2luLVBhdGggJGxsdm1CaW4gIiR7TmRrVGFyZ2V0fTI2LWNsYW5nLmNtZCIKICAgICRzeXNyb290ID0gKEpvaW4tUGF0aCAkbGx2bVJvb3QgInN5c3Jvb3QiKS5SZXBsYWNlKCJcIiwgIi8iKQogICAgJGluY2x1ZGVSb290ID0gIiRzeXNyb290L3Vzci9pbmNsdWRlIgogICAgJHRhcmdldEluY2x1ZGUgPSAiJGluY2x1ZGVSb290LyRCaW5kZ2VuVHJpcGxlIgoKICAgIFNldC1JdGVtIC1QYXRoICJFbnY6Q0NfJGxvd2VyIiAtVmFsdWUgJGNsYW5nCiAgICBTZXQtSXRlbSAtUGF0aCAiRW52OkNYWF8kbG93ZXIiIC1WYWx1ZSAoSm9pbi1QYXRoICRsbHZtQmluICIke05ka1RhcmdldH0yNi1jbGFuZysrLmNtZCIpCiAgICBTZXQtSXRlbSAtUGF0aCAiRW52OkFSXyRsb3dlciIgLVZhbHVlIChKb2luLVBhdGggJGxsdm1CaW4gImxsdm0tYXIuZXhlIikKICAgIFNldC1JdGVtIC1QYXRoICJFbnY6Q0FSR09fVEFSR0VUXyR7dXBwZXJ9X0xJTktFUiIgLVZhbHVlICRjbGFuZwogICAgU2V0LUl0ZW0gLVBhdGggIkVudjpCSU5ER0VOX0VYVFJBX0NMQU5HX0FSR1NfJGxvd2VyIiAtVmFsdWUgIi0tdGFyZ2V0PSR7TmRrVGFyZ2V0fTI2IC0tc3lzcm9vdD0kc3lzcm9vdCAtSSRpbmNsdWRlUm9vdCAtSSR0YXJnZXRJbmNsdWRlIgp9CgpQdXNoLUxvY2F0aW9uICRyZXBvUm9vdAp0cnkgewogICAgJGVudjpLU1VfUEFDS0FHRV9OQU1FID0gJE1hbmFnZXJQYWNrYWdlCiAgICBydXN0dXAgdGFyZ2V0IGFkZCBhYXJjaDY0LXVua25vd24tbGludXgtbXVzbCBhYXJjaDY0LWxpbnV4LWFuZHJvaWQgYXJtdjctbGludXgtYW5kcm9pZGVhYmkgeDg2XzY0LWxpbnV4LWFuZHJvaWQKCiAgICAkZW52OkNBUkdPX1RBUkdFVF9BQVJDSDY0X1VOS05PV05fTElOVVhfTVVTTF9MSU5LRVIgPSBKb2luLVBhdGggJGxsdm1CaW4gImFhcmNoNjQtbGludXgtYW5kcm9pZDI2LWNsYW5nLmNtZCIKICAgICRlbnY6UlVTVEZMQUdTID0gIi1DIGxpbmstYXJnPS1uby1waWUiCiAgICBjYXJnbyBidWlsZCAtLXBhY2thZ2Uga3N1aW5pdCAtLXRhcmdldCBhYXJjaDY0LXVua25vd24tbGludXgtbXVzbCAtLXJlbGVhc2UKICAgIGlmICgkTEFTVEVYSVRDT0RFIC1uZSAwKSB7IHRocm93ICJrc3Vpbml0IGJ1aWxkIGZhaWxlZCIgfQogICAgUmVtb3ZlLUl0ZW0gRW52OlJVU1RGTEFHUwoKICAgICR1bmlxdWVFeHBlY3RlZEttaXMgPSBAKCRFeHBlY3RlZEttaXMgfCBTb3J0LU9iamVjdCAtVW5pcXVlKQogICAgaWYgKCRFeHBlY3RlZEttaXMuQ291bnQgLWVxIDAgLW9yICR1bmlxdWVFeHBlY3RlZEttaXMuQ291bnQgLW5lICRFeHBlY3RlZEttaXMuQ291bnQpIHsKICAgICAgICB0aHJvdyAiRXhwZWN0ZWRLbWlzIG11c3QgY29udGFpbiBhdCBsZWFzdCBvbmUgdW5pcXVlIEtNSSBuYW1lIgogICAgfQoKICAgICRleHBlY3RlZExrbU5hbWVzID0gQCgkRXhwZWN0ZWRLbWlzIHwgRm9yRWFjaC1PYmplY3QgeyAiJHtffV9rZXJuZWxzdS5rbyIgfSkKICAgICRsa21GaWxlcyA9IEAoR2V0LUNoaWxkSXRlbSAtTGl0ZXJhbFBhdGggJExrbURpcmVjdG9yeSAtRmlsZSAtRmlsdGVyICIqX2tlcm5lbHN1LmtvIikKICAgICRhY3R1YWxMa21OYW1lcyA9IEAoJGxrbUZpbGVzIHwgRm9yRWFjaC1PYmplY3QgeyAkXy5OYW1lIH0pCiAgICAkbWlzc2luZ0xrbXMgPSBAKCRleHBlY3RlZExrbU5hbWVzIHwgV2hlcmUtT2JqZWN0IHsgJF8gLW5vdGluICRhY3R1YWxMa21OYW1lcyB9KQogICAgJHVuZXhwZWN0ZWRMa21zID0gQCgkYWN0dWFsTGttTmFtZXMgfCBXaGVyZS1PYmplY3QgeyAkXyAtbm90aW4gJGV4cGVjdGVkTGttTmFtZXMgfSkKICAgIGlmICgkbWlzc2luZ0xrbXMuQ291bnQgLWd0IDAgLW9yICR1bmV4cGVjdGVkTGttcy5Db3VudCAtZ3QgMCkgewogICAgICAgIHRocm93ICJLTUkgbW9kdWxlIHNldCBtaXNtYXRjaC4gTWlzc2luZzogWyQoJG1pc3NpbmdMa21zIC1qb2luICcsICcpXTsgdW5leHBlY3RlZDogWyQoJHVuZXhwZWN0ZWRMa21zIC1qb2luICcsICcpXSIKICAgIH0KCiAgICBOZXctSXRlbSAtSXRlbVR5cGUgRGlyZWN0b3J5IC1QYXRoICRhc3NldERpcmVjdG9yeSAtRm9yY2UgfCBPdXQtTnVsbAogICAgR2V0LUNoaWxkSXRlbSAtTGl0ZXJhbFBhdGggJGFzc2V0RGlyZWN0b3J5IC1GaWx0ZXIgIipfa2VybmVsc3Uua28iIHwgUmVtb3ZlLUl0ZW0gLUZvcmNlCiAgICBDb3B5LUl0ZW0gLUxpdGVyYWxQYXRoICRrc3Vpbml0IC1EZXN0aW5hdGlvbiAoSm9pbi1QYXRoICRhc3NldERpcmVjdG9yeSAia3N1aW5pdCIpIC1Gb3JjZQogICAgJGxrbUZpbGVzIHwgQ29weS1JdGVtIC1EZXN0aW5hdGlvbiAkYXNzZXREaXJlY3RvcnkgLUZvcmNlCgogICAgJGVtYmVkZGVkQXNzZXRGaWxlcyA9IEAoImtzdWluaXQiKSArICRleHBlY3RlZExrbU5hbWVzCiAgICAkbWlzc2luZ0VtYmVkZGVkQXNzZXRzID0gQCgkZW1iZWRkZWRBc3NldEZpbGVzIHwgV2hlcmUtT2JqZWN0IHsgLW5vdCAoVGVzdC1QYXRoIC1MaXRlcmFsUGF0aCAoSm9pbi1QYXRoICRhc3NldERpcmVjdG9yeSAkXykpIH0pCiAgICBpZiAoJG1pc3NpbmdFbWJlZGRlZEFzc2V0cy5Db3VudCAtZ3QgMCkgewogICAgICAgIHRocm93ICJFbWJlZGRlZCBhc3NldCBwcmVwYXJhdGlvbiBmYWlsZWQuIE1pc3Npbmc6IFskKCRtaXNzaW5nRW1iZWRkZWRBc3NldHMgLWpvaW4gJywgJyldIgogICAgfQoKICAgIE5ldy1JdGVtIC1JdGVtVHlwZSBEaXJlY3RvcnkgLVBhdGggJG91dHB1dERpcmVjdG9yeSAtRm9yY2UgfCBPdXQtTnVsbAogICAgJGFzc2V0TWFuaWZlc3QgPSBKb2luLVBhdGggJG91dHB1dERpcmVjdG9yeSAiZW1iZWRkZWQtYXNzZXRzLnNoYTI1NiIKICAgICRlbWJlZGRlZEFzc2V0RmlsZXMgfAogICAgICAgIEZvckVhY2gtT2JqZWN0IHsKICAgICAgICAgICAgJGFzc2V0UGF0aCA9IEpvaW4tUGF0aCAkYXNzZXREaXJlY3RvcnkgJF8KICAgICAgICAgICAgJGhhc2ggPSAoR2V0LUZpbGVIYXNoIC1MaXRlcmFsUGF0aCAkYXNzZXRQYXRoIC1BbGdvcml0aG0gU0hBMjU2KS5IYXNoLlRvTG93ZXJJbnZhcmlhbnQoKQogICAgICAgICAgICAiJGhhc2ggICRfIgogICAgICAgIH0gfAogICAgICAgIFNldC1Db250ZW50IC1MaXRlcmFsUGF0aCAkYXNzZXRNYW5pZmVzdCAtRW5jb2RpbmcgYXNjaWkKCiAgICAkZW52OkxJQkNMQU5HX1BBVEggPSAkbGx2bUJpbgogICAgY2FyZ28gY2xlYW4gLS1wYWNrYWdlIGtzdWQKCiAgICAkdGFyZ2V0cyA9IEAoCiAgICAgICAgQHsgUnVzdCA9ICJhYXJjaDY0LWxpbnV4LWFuZHJvaWQiOyBOZGsgPSAiYWFyY2g2NC1saW51eC1hbmRyb2lkIjsgQmluZGdlbiA9ICJhYXJjaDY0LWxpbnV4LWFuZHJvaWQiOyBBYmkgPSAiYXJtNjQtdjhhIiB9LAogICAgICAgIEB7IFJ1c3QgPSAiYXJtdjctbGludXgtYW5kcm9pZGVhYmkiOyBOZGsgPSAiYXJtdjdhLWxpbnV4LWFuZHJvaWRlYWJpIjsgQmluZGdlbiA9ICJhcm0tbGludXgtYW5kcm9pZGVhYmkiOyBBYmkgPSAiYXJtZWFiaS12N2EiIH0sCiAgICAgICAgQHsgUnVzdCA9ICJ4ODZfNjQtbGludXgtYW5kcm9pZCI7IE5kayA9ICJ4ODZfNjQtbGludXgtYW5kcm9pZCI7IEJpbmRnZW4gPSAieDg2XzY0LWxpbnV4LWFuZHJvaWQiOyBBYmkgPSAieDg2XzY0IiB9CiAgICApCgogICAgZm9yZWFjaCAoJHRhcmdldCBpbiAkdGFyZ2V0cykgewogICAgICAgIFNldC1UYXJnZXRFbnZpcm9ubWVudCAtVGFyZ2V0ICR0YXJnZXQuUnVzdCAtTmRrVGFyZ2V0ICR0YXJnZXQuTmRrIC1CaW5kZ2VuVHJpcGxlICR0YXJnZXQuQmluZGdlbgogICAgICAgIGNhcmdvIGJ1aWxkIC0tdGFyZ2V0ICR0YXJnZXQuUnVzdCAtLXJlbGVhc2UgLS1tYW5pZmVzdC1wYXRoIHVzZXJzcGFjZVxrc3VkXENhcmdvLnRvbWwKICAgICAgICBpZiAoJExBU1RFWElUQ09ERSAtbmUgMCkgeyB0aHJvdyAia3N1ZCBidWlsZCBmYWlsZWQgZm9yICQoJHRhcmdldC5SdXN0KSIgfQoKICAgICAgICAkYmluYXJ5ID0gSm9pbi1QYXRoICRyZXBvUm9vdCAidGFyZ2V0XCQoJHRhcmdldC5SdXN0KVxyZWxlYXNlXGtzdWQiCiAgICAgICAgQ29weS1JdGVtIC1MaXRlcmFsUGF0aCAkYmluYXJ5IC1EZXN0aW5hdGlvbiAoSm9pbi1QYXRoICRvdXRwdXREaXJlY3RvcnkgImtzdWQtJCgkdGFyZ2V0LlJ1c3QpIikgLUZvcmNlCiAgICAgICAgJGpuaUxpYkFiaURpcmVjdG9yeSA9IEpvaW4tUGF0aCAkam5pTGliRGlyZWN0b3J5ICR0YXJnZXQuQWJpCiAgICAgICAgTmV3LUl0ZW0gLUl0ZW1UeXBlIERpcmVjdG9yeSAtUGF0aCAkam5pTGliQWJpRGlyZWN0b3J5IC1Gb3JjZSB8IE91dC1OdWxsCiAgICAgICAgQ29weS1JdGVtIC1MaXRlcmFsUGF0aCAkYmluYXJ5IC1EZXN0aW5hdGlvbiAoSm9pbi1QYXRoICRqbmlMaWJBYmlEaXJlY3RvcnkgImxpYmtzdWQuc28iKSAtRm9yY2UKICAgIH0KCiAgICAkYXNzZXRNYW5pZmVzdEFmdGVyQnVpbGQgPSAkZW1iZWRkZWRBc3NldEZpbGVzIHwKICAgICAgICBGb3JFYWNoLU9iamVjdCB7CiAgICAgICAgICAgICRhc3NldFBhdGggPSBKb2luLVBhdGggJGFzc2V0RGlyZWN0b3J5ICRfCiAgICAgICAgICAgICRoYXNoID0gKEdldC1GaWxlSGFzaCAtTGl0ZXJhbFBhdGggJGFzc2V0UGF0aCAtQWxnb3JpdGhtIFNIQTI1NikuSGFzaC5Ub0xvd2VySW52YXJpYW50KCkKICAgICAgICAgICAgIiRoYXNoICAkXyIKICAgICAgICB9CiAgICAkYXNzZXRNYW5pZmVzdEJlZm9yZUJ1aWxkID0gR2V0LUNvbnRlbnQgLUxpdGVyYWxQYXRoICRhc3NldE1hbmlmZXN0CiAgICBpZiAoQChDb21wYXJlLU9iamVjdCAkYXNzZXRNYW5pZmVzdEJlZm9yZUJ1aWxkICRhc3NldE1hbmlmZXN0QWZ0ZXJCdWlsZCkuQ291bnQgLWd0IDApIHsKICAgICAgICB0aHJvdyAiRW1iZWRkZWQgYXNzZXQgc2V0IGNoYW5nZWQgZHVyaW5nIGtzdWQgYnVpbGQiCiAgICB9Cn0KZmluYWxseSB7CiAgICBSZW1vdmUtSXRlbSBFbnY6S1NVX1BBQ0tBR0VfTkFNRSAtRXJyb3JBY3Rpb24gU2lsZW50bHlDb250aW51ZQogICAgUG9wLUxvY2F0aW9uCn0K
+param(
+    [string]$NdkRoot = "$PSScriptRoot\..\.android-sdk\ndk\29.0.14206865",
+    [string]$LkmDirectory = "$PSScriptRoot\..\out\lkm",
+    [string]$ManagerPackage = "com.makosu.manager",
+    [string[]]$ExpectedKmis = @(
+        "android12-5.10",
+        "android13-5.10",
+        "android13-5.15",
+        "android14-5.15",
+        "android14-6.1",
+        "android15-6.6",
+        "android16-6.12"
+    )
+)
+
+$ErrorActionPreference = "Stop"
+$repoRoot = (Resolve-Path "$PSScriptRoot\..").Path
+$llvmRoot = Join-Path $NdkRoot "toolchains\llvm\prebuilt\windows-x86_64"
+$llvmBin = Join-Path $llvmRoot "bin"
+$ksuinit = Join-Path $repoRoot "target\aarch64-unknown-linux-musl\release\ksuinit"
+$assetDirectory = Join-Path $repoRoot "userspace\ksud\bin\aarch64"
+$outputDirectory = Join-Path $repoRoot "out\rust"
+$jniLibDirectory = Join-Path $repoRoot "manager\app\src\main\jniLibs"
+
+function Set-TargetEnvironment {
+    param(
+        [string]$Target,
+        [string]$NdkTarget,
+        [string]$BindgenTriple
+    )
+
+    $lower = $Target.Replace("-", "_")
+    $upper = $lower.ToUpperInvariant()
+    $clang = Join-Path $llvmBin "${NdkTarget}26-clang.cmd"
+    $sysroot = (Join-Path $llvmRoot "sysroot").Replace("\", "/")
+    $includeRoot = "$sysroot/usr/include"
+    $targetInclude = "$includeRoot/$BindgenTriple"
+
+    Set-Item -Path "Env:CC_$lower" -Value $clang
+    Set-Item -Path "Env:CXX_$lower" -Value (Join-Path $llvmBin "${NdkTarget}26-clang++.cmd")
+    Set-Item -Path "Env:AR_$lower" -Value (Join-Path $llvmBin "llvm-ar.exe")
+    Set-Item -Path "Env:CARGO_TARGET_${upper}_LINKER" -Value $clang
+    Set-Item -Path "Env:BINDGEN_EXTRA_CLANG_ARGS_$lower" -Value "--target=${NdkTarget}26 --sysroot=$sysroot -I$includeRoot -I$targetInclude"
+}
+
+Push-Location $repoRoot
+try {
+    $env:KSU_PACKAGE_NAME = $ManagerPackage
+    rustup target add aarch64-unknown-linux-musl aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
+
+    $env:CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER = Join-Path $llvmBin "aarch64-linux-android26-clang.cmd"
+    $env:RUSTFLAGS = "-C link-arg=-no-pie"
+    cargo build --package ksuinit --target aarch64-unknown-linux-musl --release
+    if ($LASTEXITCODE -ne 0) { throw "ksuinit build failed" }
+    Remove-Item Env:RUSTFLAGS
+
+    $uniqueExpectedKmis = @($ExpectedKmis | Sort-Object -Unique)
+    if ($ExpectedKmis.Count -eq 0 -or $uniqueExpectedKmis.Count -ne $ExpectedKmis.Count) {
+        throw "ExpectedKmis must contain at least one unique KMI name"
+    }
+
+    $expectedLkmNames = @($ExpectedKmis | ForEach-Object { "${_}_kernelsu.ko" })
+    $lkmFiles = @(Get-ChildItem -LiteralPath $LkmDirectory -File -Filter "*_kernelsu.ko")
+    $actualLkmNames = @($lkmFiles | ForEach-Object { $_.Name })
+    $missingLkms = @($expectedLkmNames | Where-Object { $_ -notin $actualLkmNames })
+    $unexpectedLkms = @($actualLkmNames | Where-Object { $_ -notin $expectedLkmNames })
+    if ($missingLkms.Count -gt 0 -or $unexpectedLkms.Count -gt 0) {
+        throw "KMI module set mismatch. Missing: [$($missingLkms -join ', ')]; unexpected: [$($unexpectedLkms -join ', ')]"
+    }
+
+    New-Item -ItemType Directory -Path $assetDirectory -Force | Out-Null
+    Get-ChildItem -LiteralPath $assetDirectory -Filter "*_kernelsu.ko" | Remove-Item -Force
+    Copy-Item -LiteralPath $ksuinit -Destination (Join-Path $assetDirectory "ksuinit") -Force
+    $lkmFiles | Copy-Item -Destination $assetDirectory -Force
+
+    $embeddedAssetFiles = @("ksuinit") + $expectedLkmNames
+    $missingEmbeddedAssets = @($embeddedAssetFiles | Where-Object { -not (Test-Path -LiteralPath (Join-Path $assetDirectory $_)) })
+    if ($missingEmbeddedAssets.Count -gt 0) {
+        throw "Embedded asset preparation failed. Missing: [$($missingEmbeddedAssets -join ', ')]"
+    }
+
+    New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
+    $assetManifest = Join-Path $outputDirectory "embedded-assets.sha256"
+    $embeddedAssetFiles |
+        ForEach-Object {
+            $assetPath = Join-Path $assetDirectory $_
+            $hash = (Get-FileHash -LiteralPath $assetPath -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $_"
+        } |
+        Set-Content -LiteralPath $assetManifest -Encoding ascii
+
+    $env:LIBCLANG_PATH = $llvmBin
+    cargo clean --package ksud
+
+    $targets = @(
+        @{ Rust = "aarch64-linux-android"; Ndk = "aarch64-linux-android"; Bindgen = "aarch64-linux-android"; Abi = "arm64-v8a" },
+        @{ Rust = "armv7-linux-androideabi"; Ndk = "armv7a-linux-androideabi"; Bindgen = "arm-linux-androideabi"; Abi = "armeabi-v7a" },
+        @{ Rust = "x86_64-linux-android"; Ndk = "x86_64-linux-android"; Bindgen = "x86_64-linux-android"; Abi = "x86_64" }
+    )
+
+    foreach ($target in $targets) {
+        Set-TargetEnvironment -Target $target.Rust -NdkTarget $target.Ndk -BindgenTriple $target.Bindgen
+        cargo build --target $target.Rust --release --manifest-path userspace\ksud\Cargo.toml
+        if ($LASTEXITCODE -ne 0) { throw "ksud build failed for $($target.Rust)" }
+
+        $binary = Join-Path $repoRoot "target\$($target.Rust)\release\ksud"
+        Copy-Item -LiteralPath $binary -Destination (Join-Path $outputDirectory "ksud-$($target.Rust)") -Force
+        $jniLibAbiDirectory = Join-Path $jniLibDirectory $target.Abi
+        New-Item -ItemType Directory -Path $jniLibAbiDirectory -Force | Out-Null
+        Copy-Item -LiteralPath $binary -Destination (Join-Path $jniLibAbiDirectory "libksud.so") -Force
+    }
+
+    $assetManifestAfterBuild = $embeddedAssetFiles |
+        ForEach-Object {
+            $assetPath = Join-Path $assetDirectory $_
+            $hash = (Get-FileHash -LiteralPath $assetPath -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $_"
+        }
+    $assetManifestBeforeBuild = Get-Content -LiteralPath $assetManifest
+    if (@(Compare-Object $assetManifestBeforeBuild $assetManifestAfterBuild).Count -gt 0) {
+        throw "Embedded asset set changed during ksud build"
+    }
+}
+finally {
+    Remove-Item Env:KSU_PACKAGE_NAME -ErrorAction SilentlyContinue
+    Pop-Location
+}
