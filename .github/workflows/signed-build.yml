@@ -59,9 +59,17 @@ jobs:
           EOF
 
       - name: Build signed Release APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.MAKOSU_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.MAKOSU_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.MAKOSU_KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          ./gradlew :app:assembleRelease --no-daemon --stacktrace
+          ./gradlew :app:assembleRelease --no-daemon --stacktrace \
+            -PKEYSTORE_FILE=makosu-release.jks \
+            -PKEYSTORE_PASSWORD="$KEYSTORE_PASSWORD" \
+            -PKEY_ALIAS="$KEY_ALIAS" \
+            -PKEY_PASSWORD="$KEY_PASSWORD"
 
       - name: Verify APK certificate
         run: |

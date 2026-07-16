@@ -83,8 +83,14 @@ jobs:
         ls -la "/github/workspace/out/$OUTPUT_NAME"
         echo "Size: $(du -h "/github/workspace/out/$OUTPUT_NAME" | cut -f1)"
         llvm-strip -d "/github/workspace/out/$OUTPUT_NAME"
-        make -C "$KDIR" scripts/sign-file
-        "$KDIR/scripts/sign-file" sha256 /tmp/makosu-module.key /tmp/makosu-module.crt \
+        SIGN_FILE="$KDIR/scripts/sign-file"
+        if [ ! -x "$SIGN_FILE" ]; then
+          SIGN_FILE_SOURCE=$(find /opt/ddk/src /opt/ddk/kdir -path '*/scripts/sign-file.c' -print -quit)
+          test -n "$SIGN_FILE_SOURCE"
+          clang "$SIGN_FILE_SOURCE" -o /tmp/makosu-sign-file -lcrypto
+          SIGN_FILE=/tmp/makosu-sign-file
+        fi
+        "$SIGN_FILE" sha256 /tmp/makosu-module.key /tmp/makosu-module.crt \
           "/github/workspace/out/$OUTPUT_NAME"
         echo "Size after stripping: $(du -h "/github/workspace/out/$OUTPUT_NAME" | cut -f1)"
 
