@@ -49,7 +49,7 @@ jobs:
           test -n "$KEYSTORE_PASSWORD"
           test -n "$KEY_ALIAS"
           test -n "$KEY_PASSWORD"
-          printf '%s' "$KEYSTORE_B64" | base64 --decode > makosu-release.jks
+          printf '%s' "$KEYSTORE_B64" | base64 --decode --ignore-garbage > makosu-release.jks
           umask 077
           cat > makosu-signing.properties <<EOF
           KEYSTORE_FILE=makosu-release.jks
