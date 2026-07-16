@@ -36,6 +36,8 @@ data class RepoModuleArg(
     val latestRelease: String,
     val latestReleaseTime: String,
     val downloadUrl: String = "",
-    val repoUrl: String = "",
+    val url: String = "",
+    val homepageUrl: String = "",
+    val sourceUrl: String = "",
     val releases: List<ReleaseArg> = emptyList(),
 ) : Parcelable

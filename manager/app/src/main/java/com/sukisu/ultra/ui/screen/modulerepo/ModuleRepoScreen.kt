@@ -3,6 +3,9 @@ package com.sukisu.ultra.ui.screen.modulerepo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,6 +14,8 @@ import com.sukisu.ultra.ui.navigation3.Route
 import com.sukisu.ultra.ui.screen.flash.FlashIt
 import com.sukisu.ultra.ui.viewmodel.ModuleRepoViewModel
 import com.sukisu.ultra.ui.viewmodel.ModuleViewModel
+import com.sukisu.ultra.ui.util.module.ModuleDetail
+import com.sukisu.ultra.ui.util.module.fetchModuleDetail
 
 @Composable
 fun ModuleRepoScreen() {
@@ -40,40 +45,18 @@ fun ModuleRepoScreen() {
             val downloadUrl = module.latestAsset?.downloadUrl.orEmpty()
             val assetName = module.latestAsset?.name
                 ?: downloadUrl.substringAfterLast('/').ifBlank { "${module.moduleId}.zip" }
-            val releaseName = module.latestRelease.ifBlank { assetName }
-            val releases = if (downloadUrl.isNotEmpty()) {
-                listOf(
-                    ReleaseArg(
-                        tagName = releaseName,
-                        name = releaseName,
-                        publishedAt = module.latestReleaseTime,
-                        assets = listOf(
-                            ReleaseAssetArg(
-                                name = assetName,
-                                downloadUrl = downloadUrl,
-                                size = module.latestAsset?.size ?: 0L,
-                                downloadCount = module.latestAsset?.downloadCount ?: 0,
-                            )
-                        ),
-                        descriptionHTML = module.summary,
-                    )
-                )
-            } else {
-                emptyList()
-            }
             val args = RepoModuleArg(
                 moduleId = module.moduleId,
                 moduleName = module.moduleName,
                 authors = module.authors,
                 authorsList = module.authorList.map { AuthorArg(it.name, it.link) },
                 summary = module.summary,
-                latestRelease = releaseName,
+                latestRelease = module.latestRelease,
                 latestReleaseTime = module.latestReleaseTime,
                 downloadUrl = downloadUrl,
-                repoUrl = module.repoUrl.ifBlank {
-                    module.authorList.firstOrNull()?.link.orEmpty()
-                },
-                releases = releases,
+                url = module.url,
+                homepageUrl = module.homepageUrl,
+                sourceUrl = module.sourceUrl,
             )
             navigator.push(Route.ModuleRepoDetail(args))
         },
@@ -86,37 +69,44 @@ fun ModuleRepoScreen() {
 fun ModuleRepoDetailScreen(module: RepoModuleArg) {
     val navigator = LocalNavigator.current
     val uriHandler = LocalUriHandler.current
-    val sourceUrl = module.repoUrl.ifBlank {
-        module.authorsList.firstOrNull()?.link.orEmpty()
-    }
-    val webUrl = sourceUrl
-    val detailReleases = module.releases.ifEmpty {
-        if (module.downloadUrl.isNotEmpty()) {
-            listOf(
-                ReleaseArg(
-                    tagName = module.latestRelease.ifBlank { module.moduleId },
-                    name = module.latestRelease.ifBlank { module.moduleId },
-                    publishedAt = module.latestReleaseTime,
-                    assets = listOf(
-                        ReleaseAssetArg(
-                            name = module.downloadUrl.substringAfterLast('/')
-                                .ifBlank { "${module.moduleId}.zip" },
-                            downloadUrl = module.downloadUrl,
-                            size = module.releases.firstOrNull()?.assets?.firstOrNull()?.size ?: 0L,
-                            downloadCount = module.releases.firstOrNull()?.assets?.firstOrNull()?.downloadCount ?: 0,
-                        )
-                    ),
-                    descriptionHTML = module.summary,
-                )
-            )
-        } else {
-            emptyList()
+    var detail by remember(module.moduleId) { mutableStateOf<ModuleDetail?>(null) }
+    LaunchedEffect(module.moduleId) {
+        detail = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+            fetchModuleDetail(module.moduleId)
         }
     }
-    val readmeHtml = module.summary.takeIf { it.isNotBlank() }
+    val loaded = detail
+    val sourceUrl = loaded?.sourceUrl.orEmpty().ifBlank { module.sourceUrl }
+    val webUrl = loaded?.url.orEmpty().ifBlank { module.url }
+    val detailReleases = loaded?.releases?.map { release ->
+        ReleaseArg(
+            tagName = release.tagName,
+            name = release.name,
+            publishedAt = release.publishedAt,
+            assets = release.assets.map { asset ->
+                ReleaseAssetArg(asset.name, asset.downloadUrl, asset.size, asset.downloadCount)
+            },
+            descriptionHTML = release.descriptionHTML,
+        )
+    } ?: module.releases
+    val readmeHtml = loaded?.readmeHtml?.takeIf { it.isNotBlank() }
+        ?: module.summary.takeIf { it.isNotBlank() }
+    val displayModule = loaded?.let {
+        module.copy(
+            moduleName = it.moduleName.ifBlank { module.moduleName },
+            authors = it.authors.joinToString(", ") { author -> author.name },
+            authorsList = it.authors.map { author -> AuthorArg(author.name, author.link) },
+            summary = it.summary,
+            latestRelease = it.latestTag,
+            latestReleaseTime = it.latestTime,
+            url = it.url,
+            homepageUrl = it.homepageUrl,
+            sourceUrl = it.sourceUrl,
+        )
+    } ?: module
 
     val state = ModuleRepoDetailUiState(
-        module = module,
+        module = displayModule,
         readmeHtml = readmeHtml,
         readmeLoaded = true,
         detailReleases = detailReleases,

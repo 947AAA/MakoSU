@@ -6,8 +6,8 @@ import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
 
-private const val MODULES_URL =
-    "https://gitee.com/JT22/MakoSU_ModuleDownload/raw/main/modules.json"
+private const val MODULE_DETAIL_URL =
+    "https://irislys.github.io/MakoSU_ModuleDownload/module/%s.json"
 
 data class ModuleDetail(
     val readme: String,
@@ -20,7 +20,12 @@ data class ModuleDetail(
     val homepageUrl: String,
     val sourceUrl: String,
     val url: String,
+    val moduleName: String,
+    val summary: String,
+    val authors: List<AuthorInfo>,
 )
+
+data class AuthorInfo(val name: String, val link: String)
 
 data class ReleaseInfo(
     val name: String,
@@ -50,75 +55,76 @@ fun stripTicks(s: String): String {
     }
 }
 
-private fun fetchCatalogArray(): JSONArray? {
+private fun fetchModuleDetailJson(moduleId: String): JSONObject? {
     if (!isNetworkAvailable(ksuApp)) return null
     return runCatching {
-        ksuApp.okhttpClient.newCall(Request.Builder().url(MODULES_URL).build()).execute().use { resp ->
-            if (!resp.isSuccessful) null else JSONArray(resp.body.string())
+            val url = MODULE_DETAIL_URL.format(java.net.URLEncoder.encode(moduleId, "UTF-8"))
+            ksuApp.okhttpClient.newCall(Request.Builder().url(url).build()).execute().use { resp ->
+            if (!resp.isSuccessful) null else JSONObject(resp.body.string())
         }
     }.getOrNull()
 }
 
-private fun findCatalogModule(moduleId: String): JSONObject? {
-    val array = fetchCatalogArray() ?: return null
-    for (i in 0 until array.length()) {
-        val item = array.optJSONObject(i) ?: continue
-        if (item.optString("moduleId", "") == moduleId) {
-            return item
-        }
-    }
-    return null
-}
-
 private fun parseModuleDetail(item: JSONObject): ModuleDetail {
     val summary = item.optString("summary", "")
-    val repoUrl = stripTicks(item.optString("repoUrl", ""))
-    val lr = item.optJSONObject("latestRelease")
-    val latestTag = lr?.optString("name", lr.optString("version", ""))
-        ?: item.optString("latestRelease", "")
-    val latestTime = lr?.optString("time", "") ?: ""
-    val downloadUrl = stripTicks(lr?.optString("downloadUrl", "") ?: "")
-    val assetName = downloadUrl.substringAfterLast('/').takeIf { it.isNotEmpty() }
-    val assetSize = lr?.optLong("size", 0L) ?: 0L
-    val assetDownloads = lr?.optInt("downloadCount", 0) ?: 0
-    val releases = if (downloadUrl.isNotEmpty()) {
-        listOf(
-            ReleaseInfo(
-                name = latestTag,
-                tagName = latestTag,
-                publishedAt = latestTime,
-                descriptionHTML = summary,
-                assets = listOf(
-                    ReleaseAssetInfo(
-                        name = assetName ?: "${item.optString("moduleId", "module")}.zip",
-                        downloadUrl = downloadUrl,
-                        size = assetSize,
-                        downloadCount = assetDownloads,
-                    )
-                ),
-            )
-        )
-    } else {
-        emptyList()
-    }
+    val latestTag = item.optString("latestRelease", "")
+    val latestTime = item.optString("latestReleaseTime", "")
+    val authors = item.optJSONArray("authors")?.let { array ->
+        (0 until array.length()).mapNotNull { index ->
+            array.optJSONObject(index)?.let { author ->
+                AuthorInfo(author.optString("name", ""), stripTicks(author.optString("link", "")))
+            }
+        }
+    } ?: emptyList()
+    val releases = item.optJSONArray("releases")?.let { array ->
+        (0 until array.length()).mapNotNull { index -> parseRelease(array.optJSONObject(index)) }
+    } ?: emptyList()
+    val latestAsset = releases.firstOrNull()?.assets?.firstOrNull()
 
     return ModuleDetail(
-        readme = summary,
-        readmeHtml = summary,
+        readme = item.optString("readme", ""),
+        readmeHtml = item.optString("readmeHTML", ""),
         latestTag = latestTag,
         latestTime = latestTime,
-        latestAssetName = assetName,
-        latestAssetUrl = downloadUrl.ifEmpty { null },
+        latestAssetName = latestAsset?.name,
+        latestAssetUrl = latestAsset?.downloadUrl,
         releases = releases,
-        homepageUrl = repoUrl,
-        sourceUrl = repoUrl,
-        url = repoUrl,
+        homepageUrl = stripTicks(item.optString("homepageUrl", "")),
+        sourceUrl = stripTicks(item.optString("sourceUrl", "")),
+        url = stripTicks(item.optString("url", "")),
+        moduleName = item.optString("moduleName", ""),
+        summary = summary,
+        authors = authors,
+    )
+}
+
+private fun parseRelease(item: JSONObject?): ReleaseInfo? {
+    if (item == null) return null
+    val assets = item.optJSONArray("releaseAssets")?.let { array ->
+        (0 until array.length()).mapNotNull { index ->
+            array.optJSONObject(index)?.let { asset ->
+                val name = asset.optString("name", "")
+                val url = stripTicks(asset.optString("downloadUrl", ""))
+                if (name.isBlank() || url.isBlank()) null else ReleaseAssetInfo(
+                    name = name,
+                    downloadUrl = url,
+                    size = asset.optLong("size", 0L),
+                    downloadCount = asset.optInt("downloadCount", 0),
+                )
+            }
+        }
+    } ?: emptyList()
+    return ReleaseInfo(
+        name = item.optString("name", ""),
+        tagName = item.optString("tagName", ""),
+        publishedAt = item.optString("publishedAt", ""),
+        descriptionHTML = item.optString("descriptionHTML", ""),
+        assets = assets,
     )
 }
 
 fun fetchReleaseDescriptionHtml(moduleId: String, latestTag: String): String? {
-    val item = findCatalogModule(moduleId) ?: return null
-    val detail = parseModuleDetail(item)
+    val detail = fetchModuleDetail(moduleId) ?: return null
     if (latestTag.isBlank() || detail.latestTag == latestTag || detail.latestTag.isBlank()) {
         return detail.readmeHtml.takeIf { it.isNotBlank() }
     }
@@ -131,6 +137,5 @@ fun fetchReleaseDescriptionHtml(moduleId: String, latestTag: String): String? {
 
 fun fetchModuleDetail(moduleId: String): ModuleDetail? {
     if (moduleId.isBlank()) return null
-    val item = findCatalogModule(moduleId) ?: return null
-    return parseModuleDetail(item)
+    return fetchModuleDetailJson(moduleId)?.let(::parseModuleDetail)
 }

@@ -8,6 +8,7 @@ enum class RepoSort {
     UPDATED,
     NAME,
     STARS,
+    CREATED,
 }
 
 data class ModuleRepoUiState(

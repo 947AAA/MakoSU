@@ -15,7 +15,7 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
 
     companion object {
         private const val MODULES_URL =
-            "https://gitee.com/JT22/MakoSU_ModuleDownload/raw/main/modules.json"
+            "https://irislys.github.io/MakoSU_ModuleDownload/modules.json"
 
         private fun stripTicks(s: String): String {
             val t = s.trim()
@@ -50,7 +50,7 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
     }
 
     private fun parseRepoModule(item: JSONObject): RepoModule? {
-        val moduleId = item.optString("moduleId", "")
+        val moduleId = item.optString("moduleId", "").trim()
         if (moduleId.isEmpty()) return null
         val moduleName = item.optString("moduleName", "")
         val authorsArray = item.optJSONArray("authors")
@@ -69,6 +69,8 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
         val summary = item.optString("summary", "")
         val metamodule = item.optBoolean("metamodule", false)
         val stargazerCount = item.optInt("stargazerCount", 0)
+        val updatedAt = item.optString("updatedAt", "")
+        val createdAt = item.optString("createdAt", "")
 
         var latestRelease = ""
         var latestReleaseTime = ""
@@ -80,7 +82,7 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
             val lrTime = lr.optString("time", "")
             val lrUrl = stripTicks(lr.optString("downloadUrl", ""))
 
-            latestVersionCode = lr.optInt("versionCode", 0).toLong()
+            latestVersionCode = lr.optString("versionCode", "0").toLongOrNull() ?: 0L
             latestRelease = lrName
             latestReleaseTime = lrTime
             if (lrUrl.isNotEmpty()) {
@@ -94,7 +96,9 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
             }
         }
 
-        val repoUrl = item.optString("repoUrl", "").trim().let { stripTicks(it) }
+        val url = item.optString("url", "").trim().let { stripTicks(it) }
+        val homepageUrl = item.optString("homepageUrl", "").trim().let { stripTicks(it) }
+        val sourceUrl = item.optString("sourceUrl", "").trim().let { stripTicks(it) }
 
         return RepoModule(
             moduleId = moduleId,
@@ -104,11 +108,15 @@ class ModuleRepoRepositoryImpl : ModuleRepoRepository {
             summary = summary,
             metamodule = metamodule,
             stargazerCount = stargazerCount,
+            updatedAt = updatedAt,
+            createdAt = createdAt,
             latestRelease = latestRelease,
             latestReleaseTime = latestReleaseTime,
             latestVersionCode = latestVersionCode,
             latestAsset = latestAsset,
-            repoUrl = repoUrl,
+            url = url,
+            homepageUrl = homepageUrl,
+            sourceUrl = sourceUrl,
         )
     }
 }
